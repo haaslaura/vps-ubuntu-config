@@ -1,4 +1,4 @@
-# Configurer un VPS
+# Configurer un VPS (Guide en cours)
 
 J'ai configuré récemment un VPS chez [Hostinger](https://www.hostinger.com/fr). Outre quelques notes sur le processus que j'ai souhaité conserver, il est possible que cela serve à d'autres. Bonne lecture !
 
