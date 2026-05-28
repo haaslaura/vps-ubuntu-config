@@ -1,7 +1,8 @@
 # Configurer un VPS
 
-Avant-propos :
-Ces consignes fonctionnent pour un VPS avec Ubuntu. Selon vos configurations et vos besoins, les configurations peuvent changer.
+J'ai configuré récemment un VPS chez (Hostinger)[https://www.hostinger.com/fr]. Outre quelques notes sur le processus que j'ai souhaité conserver, il est possible que cela serve à d'autres. Bonne lecture !
+
+Attention, ces consignes fonctionnent pour un VPS avec Ubuntu. Selon vos configurations et vos besoins, les commandes peuvent changer.
 
 Commandes générales : 
 
