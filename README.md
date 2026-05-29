@@ -33,7 +33,7 @@ Remplacez xx.xxx.xxx.xx par l’adresse IPv4 de votre serveur.
 Puis saisir votre mot de passe.
 
 ## Récupérer le projet depuis GitHub
-S’ils n’existent pas encore, créer un dossier pour vos projets (par exemple `/www`) ainsi qu’un dossier spécifique pour la production (`/prod`) et/ou le développement (`/dev`), selon l’organisation souhaitée.
+S’ils n’existent pas encore, créer un dossier pour vos projets (par exemple `/www`) ainsi qu’un dossier spécifique pour la production (`/prod`) et/ou le développement (`/dev`). Vous pouvez adapter ces conseils à vos besoins en matière d'organisation.
 
 Se rendre dans le répertoire `/var`, puis créer les dossiers :
 ```bash
@@ -196,7 +196,7 @@ pm2 save
 ```
 
 ## Créer la base de données
-Installer PostgreSQL en local sur votre machine, puis pousser les modifications sur le dépôt Git et les récupérer sur le serveur (`git pull`).
+Installer PostgreSQL en local sur votre machine, puis pousser les modifications sur le dépôt Git. Récupérer ensuite ces modifications sur le serveur (`git pull`).
 Installer PostgreSQL sur le serveur. Lors de l’installation, un utilisateur système principal postgres est créé.
 
 Pour se connecter à PostgreSQL en tant qu’utilisateur système :
