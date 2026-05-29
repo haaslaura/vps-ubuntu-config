@@ -1,11 +1,11 @@
-# Configurer un VPS (guide en cours)
+# Configurer un VPS
 
 J'ai récemment configuré un VPS chez [Hostinger](https://www.hostinger.com/fr). En plus de quelques notes que j’ai souhaité conserver sur le processus, ce guide pourra peut-être aider d’autres personnes. Bonne lecture !
 
 > [!IMPORTANT]
 > Ces consignes fonctionnent pour un VPS sous Ubuntu. Selon votre configuration et vos besoins, certaines commandes peuvent différer.
 
-## Commandes générales
+## 🔧 Commandes générales
 
 ### Commandes terminal
 
@@ -336,7 +336,7 @@ DATABASE_SSL=false
 
 Si vous repérez une erreur ou une amélioration possible dans ce tutoriel, n'hésitez pas à [ouvrir une issue](https://github.com/haaslaura/vps-ubuntu-config/issues/new) ou à proposer une Pull Request.
 
-## Informations de contact
+## 📬 Informations de contact
 
 Je suis disponible via [LinkedIn](https://www.linkedin.com/in/laurahaas-developpement/) si vous souhaitez me contacter.
 Merci pour vos questions ou vos feedback !
