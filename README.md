@@ -23,14 +23,16 @@ mkdir nomdudossier
 
 ## Se connecter au VPS en SSH
 
-Ouvrir son terminal préféré ([Cmder.exe](https://cmder.app/) sur Windows par exemple)
+Ouvrir votre terminal préféré ([Cmder](https://cmder.app/) sous Windows, par exemple)
 
-Entrez :
+Entrer la commande suivante :
 
 ```bash
-ssh root@xx.xxx.xxx.xx # Il s'agit de l'IPv4 de votre serveur
+ssh root@xx.xxx.xxx.xx
 ```
-Puis votre mot de passe.
+Remplacez xx.xxx.xxx.xx par l’adresse IPv4 de votre serveur.
+
+Puis saisir votre mot de passe.
 
 ## Récupérer le projet depuis GitHub
 
