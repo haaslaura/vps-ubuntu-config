@@ -36,9 +36,9 @@ Puis saisir votre mot de passe.
 
 ## Récupérer le projet depuis GitHub
 
-S’ils n’existent pas encore, créez un dossier pour vos projets (ex: /wwww) et un dossier spécifique à la /prod (et/ou au /dev, à vous de voir comment vous souhaitez vous organiser).
+S’ils n’existent pas encore, créer un dossier pour vos projets (par exemple /www) ainsi qu’un dossier spécifique pour la production (/prod) et/ou le développement (/dev), selon l’organisation souhaitée.
 
-Se rendre dans les fichiers puis créer les dossiers :
+Se rendre dans le répertoire /var, puis créer les dossiers :
 
 ```bash
 cd /var/
@@ -48,18 +48,21 @@ mkdir prod
 cd prod
 ```
 
-Si votre projet Github contient le front et le back, récupérez-le :
+Si votre dépôt GitHub contient à la fois le front-end et le back-end, le cloner directement :
 ```bash
-git clone <url  github du projet>
+git clone <url-github-du-projet>
 ```
-Sinon, créez votre dossier frontend et votre dossier backend avant d’y cloner vos repo.
+Sinon, créer un dossier frontend et un dossier backend, puis cloner les dépôts correspondants dans chacun d’eux.
 
-Pour chaque dossier (front et back) :
+Pour chaque projet (front et back) :
 ```bash
-npm i # installez vos modules
-npm run build # si nécessaire pour votre projet
+npm install
 ```
-Pas la peine de lancer les projets pour le moment. C’est avec la suite – et Pm2 - qu'on s’en chargera.
+Puis si nécessaire :
+```bash
+npm run build
+```
+Il n’est pas nécessaire de lancer les projets pour le moment. La suite de la configuration, notamment avec PM2, permettra de s’en charger.
 
 ## Configurer vos serveurs
 ### Installer Nginx
