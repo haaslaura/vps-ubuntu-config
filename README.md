@@ -142,41 +142,39 @@ vi /etc/nginx/sites-available/back.conf
 Exemple de configuration :
 ```bash
 server {
-        listen 80;
-        listen [::]:80;
+	listen 80;
+	listen [::]:80;
 
-        server_name url-du-back.com;
+	server_name url-du-back.com;
 
-     # Logs du trafic et des erreurs
-      access_log /var/log/nginx/url-du-back.com.access.log;
-      error_log /var/log/nginx/url-du-back.com.error.log;
+	# Logs du trafic et des erreurs
+	access_log /var/log/nginx/url-du-back.com.access.log;
+	error_log /var/log/nginx/url-du-back.com.error.log;
 
+	# Indiquez ici le port du back
+	location / {
+		proxy_pass http://localhost:1337;
 
-        # Indiquez ici le port du back
-        location / {
-                proxy_pass http://localhost:1337;
+		# Headers standards
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
 
-                # Headers standards
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
+		# Support WebSockets (utile pour le hot-reload/admin)
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "upgrade";
+	}
 
-                # Support WebSockets (utile pour le hot-reload/admin)
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection "upgrade";
-        }
+	# Taille maximale des uploads (pour les images/vidéos)
+	client_max_body_size 50M;
 
-        # Taille maximale des uploads (pour les images/vidéos)
-        client_max_body_size 50M;
-
-        # Headers de sécurité
-        add_header X-Frame-Options "SAMEORIGIN" always;
-        add_header X-Content-Type-Options "nosniff" always;
+	# Headers de sécurité
+	add_header X-Frame-Options "SAMEORIGIN" always;
+	add_header X-Content-Type-Options "nosniff" always;
 }
 ```
-
 Vérifier que le fichier de configuration ne comporte pas d’erreur :
 ```bash
 nginx -t
@@ -204,6 +202,65 @@ pm2 save
 ```
 
 ## Créer la base de données
-...
+Installer pg en local.
+Git push puis git pull le projet.
+Installer postgresql sur le serveur. Il faudra un nom d’utilisateur principal et un mot de passe.
+Pour se connecter à postgres en tant qu'utilisateur système, entrer :
+
+```bash
+sudo -i -u postgres
+```
+Une fois dans postgres :
+Créer une base de données :
+```bash
+CREATE DATABASE name_db;
+```
+Donner le droit à l'utilisateur :
+```bash
+GRANT ALL PRIVILEGES ON DATABASE name_db TO admin_user;
+GRANT ALL ON SCHEMA public TO admin_user;
+```
+Supprimer une base de données :
+```bash
+DROP DATABASE name_db;
+```
+On peut ensuite se rendre dans la base de données que l'on souhaite. Ex :
+```bash
+\c name_db
+```
+Puis voir nos tables :
+```bash
+\dt
+```
 ## Préparer le fichier .env
-...
+Au bon emplacement, entrer :
+```bash
+vi .env
+```
+Appuyer sur i pour modifier :
+```bash
+# Commun (ou valeurs par défaut)
+HOST=0.0.0.0
+PORT=1337
+
+FRONTEND_URL=https://votre-url.com
+PUBLIC_URL=https://api.votre-url.com
+
+# Si Strapi, ajouter les tokens
+APP_KEYS="..., ..."
+API_TOKEN_SALT=...
+ADMIN_JWT_SECRET=
+TRANSFER_TOKEN_SALT=
+JWT_SECRET=
+ENCRYPTION_KEY=
+
+# DATABASE
+DATABASE_CLIENT=postgres
+DATABASE_HOST=127.0.0.1
+DATABASE_PORT=5432
+DATABASE_NAME=
+DATABASE_USERNAME=
+DATABASE_PASSWORD=
+DATABASE_SSL=false
+```
+Appuyer sur ECHAP puis :wq pour enregistrer.
