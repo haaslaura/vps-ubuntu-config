@@ -1,31 +1,27 @@
-# Configurer un VPS (Guide en cours)
+# Configurer un VPS (guide en cours)
 
-J'ai configuré récemment un VPS chez [Hostinger](https://www.hostinger.com/fr). Outre quelques notes sur le processus que j'ai souhaité conserver, il est possible que cela serve à d'autres. Bonne lecture !
+J'ai récemment configuré un VPS chez [Hostinger](https://www.hostinger.com/fr). En plus de quelques notes que j’ai souhaité conserver sur le processus, ce guide pourra peut-être aider d’autres personnes. Bonne lecture !
 
-Attention, ces consignes fonctionnent pour un VPS avec Ubuntu. Selon vos configurations et vos besoins, les commandes peuvent changer.
+Attention : ces consignes fonctionnent pour un VPS sous Ubuntu. Selon votre configuration et vos besoins, certaines commandes peuvent différer.
 
-Commandes générales : 
+## Commandes générales : 
 
 ```bash
 # Créer ou modifier un fichier
 vi nomdufichier
-
 # Quitter le fichier et enregistrer
-Echap
+Échap
 :wq
-
 # Quitter sans enregistrer
-Ctrl+C
+Ctrl + C
 :qa
-
-# Lire sans modifier
+# Lire un fichier sans le modifier
 cat nomdufichier
-
 # Créer un dossier
 mkdir nomdudossier
 ```
 
-## Se connecter au SSH via le terminal de commande
+## Se connecter au VPS en SSH
 
 Ouvrir son terminal préféré ([Cmder.exe](https://cmder.app/) sur Windows par exemple)
 
@@ -36,7 +32,7 @@ ssh root@xx.xxx.xxx.xx # Il s'agit de l'IPv4 de votre serveur
 ```
 Puis votre mot de passe.
 
-## Récupérer le projet depuis Github
+## Récupérer le projet depuis GitHub
 
 S’ils n’existent pas encore, créez un dossier pour vos projets (ex: /wwww) et un dossier spécifique à la /prod (et/ou au /dev, à vous de voir comment vous souhaitez vous organiser).
 
