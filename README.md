@@ -2,8 +2,9 @@
 
 J'ai récemment configuré un VPS chez [Hostinger](https://www.hostinger.com/fr). En plus de quelques notes que j’ai souhaité conserver sur le processus, ce guide pourra peut-être aider d’autres personnes. Bonne lecture !
 
-Attention : ces consignes fonctionnent pour un VPS sous Ubuntu. Selon votre configuration et vos besoins, certaines commandes peuvent différer.
-
+> [!IMPORTANT]
+> Ces consignes fonctionnent pour un VPS sous Ubuntu. Selon votre configuration et vos besoins, certaines commandes peuvent différer.
+ 
 ## Commandes générales : 
 
 ```bash
@@ -66,23 +67,22 @@ Il n’est pas nécessaire de lancer les projets pour le moment. La suite de la 
 
 ## Configurer vos serveurs
 ### Installer Nginx
-Il s'agit d'un logiciel libre de serveur Web.
+Nginx est un logiciel libre de serveur web.
 ```bash
 sudo apt install nginx
 ```
 ### Installer Pm2
-Pm2 est le Product Process Manager qui fera tourner le server (en fond).
+PM2 est un _Process Manager_ qui permet de faire tourner le serveur en arrière-plan.
 ```bash
 npm install pm2 -g
 ```
 ### Installer Certbot
-Certbot permettra d’installer les certificats SSL.
+Certbot permet d’installer et de renouveler les certificats SSL.
 ```bash
 apt install certbot python3-certbot-nginx
 ```
-### Créer la config serveur du front :
-Se rendre dans le dossier du front.
-Puis créez un fichier pour la configuration :
+### Créer la configuration du serveur front :
+Se rendre dans le dossier du front, puis créer un fichier de configuration :
 ```bash
 vi /etc/nginx/sites-available/front.conf
 ```
@@ -119,7 +119,7 @@ Créer un lien symbolique :
 ```bash
 ln -s /etc/nginx/sites-available/front.conf /etc/nginx/sites-enabled/
 ```
-Relancer le système en fond :
+Recharger Nginx :
 ```bash
 systemctl reload nginx
 ```
@@ -132,11 +132,11 @@ Lancer le serveur du front :
 ```bash
 pm2 start npm --name "projet-front" -- run start
 ```
-Prévoir une relance automatique si le serveur tombe :
+Prévoir une relance automatique en cas de redémarrage ou de crash du serveur :
 ```bash
 pm2 save
 ```
-###	Créer la config server du back :
+###	Créer la configuration du serveur back :
 ```bash
 vi /etc/nginx/sites-available/back.conf
 ```
@@ -184,7 +184,7 @@ Créer un lien symbolique :
 ```bash
 ln -s /etc/nginx/sites-available/back.conf /etc/nginx/sites-enabled/
 ```
-Relancer le système en fond :
+Recharger Nginx :
 ```bash
 systemctl reload nginx
 ```
@@ -197,7 +197,7 @@ Lancer le serveur du back :
 ```bash
 pm2 start npm --name "projet-back" -- run start
 ```
-Prévoir une relance automatique si le serveur tombe :
+Prévoir une relance automatique en cas de redémarrage ou de crash :
 ```bash
 pm2 save
 ```
