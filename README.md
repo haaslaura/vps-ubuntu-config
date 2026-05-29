@@ -25,22 +25,17 @@ mkdir nomdudossier
 ## Se connecter au VPS en SSH
 
 Ouvrir votre terminal préféré ([Cmder](https://cmder.app/) sous Windows, par exemple)
-
 Entrer la commande suivante :
-
 ```bash
 ssh root@xx.xxx.xxx.xx
 ```
 Remplacez xx.xxx.xxx.xx par l’adresse IPv4 de votre serveur.
-
 Puis saisir votre mot de passe.
 
 ## Récupérer le projet depuis GitHub
+S’ils n’existent pas encore, créer un dossier pour vos projets (par exemple `/www`) ainsi qu’un dossier spécifique pour la production (`/prod`) et/ou le développement (`/dev`), selon l’organisation souhaitée.
 
-S’ils n’existent pas encore, créer un dossier pour vos projets (par exemple /www) ainsi qu’un dossier spécifique pour la production (/prod) et/ou le développement (/dev), selon l’organisation souhaitée.
-
-Se rendre dans le répertoire /var, puis créer les dossiers :
-
+Se rendre dans le répertoire `/var`, puis créer les dossiers :
 ```bash
 cd /var/
 mkdir www
@@ -48,13 +43,11 @@ cd www
 mkdir prod
 cd prod
 ```
-
 Si votre dépôt GitHub contient à la fois le front-end et le back-end, le cloner directement :
 ```bash
 git clone <url-github-du-projet>
 ```
 Sinon, créer un dossier frontend et un dossier backend, puis cloner les dépôts correspondants dans chacun d’eux.
-
 Pour chaque projet (front et back) :
 ```bash
 npm install
@@ -81,7 +74,7 @@ Certbot permet d’installer et de renouveler les certificats SSL.
 ```bash
 apt install certbot python3-certbot-nginx
 ```
-### Créer la configuration du serveur front :
+### Créer la configuration du serveur front
 Se rendre dans le dossier du front, puis créer un fichier de configuration :
 ```bash
 vi /etc/nginx/sites-available/front.conf
@@ -136,7 +129,7 @@ Prévoir une relance automatique en cas de redémarrage ou de crash du serveur :
 ```bash
 pm2 save
 ```
-###	Créer la configuration du serveur back :
+###	Créer la configuration du serveur back
 ```bash
 vi /etc/nginx/sites-available/back.conf
 ```
@@ -203,42 +196,42 @@ pm2 save
 ```
 
 ## Créer la base de données
-Installer pg en local.
-Git push puis git pull le projet.
-Installer postgresql sur le serveur. Il faudra un nom d’utilisateur principal et un mot de passe.
-Pour se connecter à postgres en tant qu'utilisateur système, entrer :
+Installer PostgreSQL en local sur votre machine, puis pousser les modifications sur le dépôt Git et les récupérer sur le serveur (`git pull`).
+Installer PostgreSQL sur le serveur. Lors de l’installation, un utilisateur système principal postgres est créé.
 
+Pour se connecter à PostgreSQL en tant qu’utilisateur système :
 ```bash
 sudo -i -u postgres
 ```
-Une fois dans postgres :
+Une fois connecté, accéder à l’interface PostgreSQL :
+```bash
+psql
+```
 Créer une base de données :
 ```bash
 CREATE DATABASE name_db;
 ```
-Donner le droit à l'utilisateur :
+Donner les droits à un utilisateur sur la base de données :
 ```bash
 GRANT ALL PRIVILEGES ON DATABASE name_db TO admin_user;
 GRANT ALL ON SCHEMA public TO admin_user;
 ```
-Supprimer une base de données :
+Voici quelques commandes suplémentaires qui peuvent être utiles :
 ```bash
+# Supprimer une base de données :
 DROP DATABASE name_db;
-```
-On peut ensuite se rendre dans la base de données que l'on souhaite. Ex :
-```bash
+# Se connecter à la base de données :
 \c name_db
-```
-Puis voir nos tables :
-```bash
+# Une fois dans la base de données, lister les tables :
 \dt
 ```
+
 ## Préparer le fichier .env
-Au bon emplacement, entrer :
+Se placer au bon emplacement, puis créer le fichier :
 ```bash
 vi .env
 ```
-Appuyer sur i pour modifier :
+Appuyer sur `i` pour passer en mode insertion, puis ajouter :
 ```bash
 # Commun (ou valeurs par défaut)
 HOST=0.0.0.0
@@ -264,4 +257,7 @@ DATABASE_USERNAME=
 DATABASE_PASSWORD=
 DATABASE_SSL=false
 ```
-Appuyer sur ECHAP puis :wq pour enregistrer.
+Appuyer sur `ECHAP` puis `:wq` pour enregistrer et quitter.
+
+## Contributions
+Si vous repérez une erreur ou une amélioration possible dans ce tutoriel, n'hésitez pas à [ouvrir une issue](https://github.com/haaslaura/vps-ubuntu-config/issues/new) ou à proposer une Pull Request.
