@@ -261,3 +261,7 @@ Appuyer sur `ECHAP` puis `:wq` pour enregistrer et quitter.
 
 ## Contributions
 Si vous repérez une erreur ou une amélioration possible dans ce tutoriel, n'hésitez pas à [ouvrir une issue](https://github.com/haaslaura/vps-ubuntu-config/issues/new) ou à proposer une Pull Request.
+
+## Informations de contact
+Je suis disponible via [LinkedIn](https://www.linkedin.com/in/laurahaas-developpement/) si vous souhaitez me contacter.
+Merci pour vos questions ou vos feedback !
